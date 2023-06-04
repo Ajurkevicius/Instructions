@@ -1,0 +1,46 @@
+Setup:
+
+	HARDWARE: to use face recognition you need IP camera with 640 x 480 resolution capability.
+
+	DIRECTORIES:
+
+	Before using the solution you need to set up path's.
+
+	FaceRecognitionWindow.xaml.cs line 58 set path to input image folder with input_image.jpg as a file. example: "C:\\Users\\Test\\Desktop\\resources\	\input_image.jpg".
+	
+	FaceRecognitionWindow.xaml.cs line 79 set path to validation folder. example: "C:\\Users\\Test\\Desktop\\validation".
+
+	ModelController.cs line 20 set path to model execution script.
+
+	ExternalCommands.cs line 17 set to cmd.exe file. Example : @"C:\windows\system32\cmd.exe";
+
+	DATABASE:
+
+	App.xaml.cs and DatabaseContext.cs and DatabaseContextFactory.cs has connection strings. Change them accordingly to your own MySQL user.
+	
+	Before starting application you need to migrate database schema:
+	
+	Use these commands in Visual Studio package manager console:
+		add-migration test1
+		update-database
+	
+	MODEL EXECUTION:
+	
+	Before using face recognition functionality you need to let desktop application execute external scripts.
+	You need to exclude folder from windows threat protection.
+ 	Start  > Settings  > Update & Security  > Windows Security > Virus & threat protection.
+	More information : https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-	c301afe13b26#:~:text=Go%20to%20Start%20%3E%20Settings%20%3E%20Update,%2C%20file%20types%2C%20or%20process.
+
+	MODEL PATH:
+
+	In order to execute model you have to point to model. Example : siameseModel=tf.keras.models.load_model('C:\\Users\\Test\\Desktop	\\siamesemodelcompiledLT3V2.h5',
+                                   custom_objects = {'L1DistCustom':L1DistCustom, 'BinaryCrossentropy':tf.keras.losses.BinaryCrossentropy})
+
+	Also you have to point to input_image.jpg and validation directory.
+
+	To train your own model you will have to point to training, validation and test folders in data pipeline.
+
+ 
+
+
+	
